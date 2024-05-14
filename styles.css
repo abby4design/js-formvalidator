@@ -1,0 +1,147 @@
+.flex-container {
+    display: flex;
+    width: 800px;
+    height: 1200px;
+    background-color: #B5C18E;
+    margin: 0 auto;
+}
+
+.items {
+    width: 600px;
+    font-size: 1rem;
+    margin-top: 30px;
+    margin-left: 20px;
+    color: #1E0342;
+}
+
+.btn {
+    margin-top: 5px;
+    padding: 5px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+
+.space {
+    margin-top: 40px;
+}
+
+.btn:hover {
+    background-color: #8DECB4;
+    border: none;
+    border-radius: 5px;
+}
+
+.hide {
+    display: none; 
+}
+
+
+span {
+    font-size: 15px;
+    color: red;
+}
+
+.end-section {
+    background-color: #1E0342;
+    color: #B5C18E;
+    margin: 50px -180px 0 -20px;
+    padding-bottom: 300px;
+}
+
+.footer {
+    text-align: center;
+    padding-top: 40px;
+}
+
+.placement {
+    display: inline;
+    margin-left: 10px;
+}
+
+a {
+    color: #B5C18E;
+}
+
+@media (min-width: 319px) and (max-width: 480px) {
+    body{
+        background-color: #B5C18E;
+    }
+
+    .flex-container {
+        width: 350px;
+        margin: 0; 
+    }
+    
+    .items {
+        width: 300px;
+        font-size: 15px;
+    }
+
+    .space {
+        margin-top: 20px;
+    }
+
+    span {
+        font-size: 5px;
+    }
+
+    .asterisk {
+        font-size: 15px;
+    }
+
+    .size {
+        width: 200px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    h2{
+        font-size: 25px;
+    }
+
+    .end-section {
+        margin-left: -60px;
+        margin-right: -200px;
+    }
+    
+}
+
+@media (min-width: 481px) and (max-width: 600px) {
+    body{
+        background-color: #B5C18E;
+        margin: 0;
+    }
+
+    .flex-container {
+        display: flex;
+        width: 450px;
+        margin: 0; 
+    } 
+
+    .items {
+        width: 400px;
+        font-size: 20px;
+    }
+}
+
+/*@media (min-width: 768px) and (max-width: 996px) {
+    body{
+        background-color: #B5C18E;
+        margin: 0;
+    }
+
+    .flex-container {
+        display: flex;
+        width: 700px;
+        margin: 0; 
+    } 
+
+    .items {
+        width: 500px;
+        font-size: 20px;
+    }
+}*/

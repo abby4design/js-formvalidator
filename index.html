@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Form</title>
+    <link href="./styles.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/03cf51d0c3.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    
+    <div class="flex-container">
+        <div class="items">
+            <form id="myForm">
+                <h1>Payment form</h1>
+                <p>
+                    Required fields are allowed by
+                    <strong>
+                        <span class="asterisk">*</span>
+                    </strong>
+                </p>
+
+                <section class="space">
+                    <h2>Contact information</h2>
+                    <fieldset>
+                        <legend>Title</legend>
+                        <p>
+                            <ul>
+                                <li>
+                                    <input type="radio" id="title_1" name="title" value="A"/>
+                                    <label for="title_1">Ace</label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="title_2" name="title" value="K"/>
+                                    <label for="title_2">King</label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="title_3" name="title" value="Q"/>
+                                    <label for="title_3">Queen</label>
+                                </li>
+                            </ul>
+                        </p>
+                    </fieldset>
+                </section>
+
+                <section>
+                    <p>
+                        <label for="user">Username:
+                            <span class="asterisk">*</span>
+                        </label>
+                        <input type="text" name="username" id="user" class="size"><span class="hide">error</span>
+                    </p>    
+
+                    <p>
+                        <label for="eAddress">Email:
+                            <span class="asterisk">*</span>
+                        </label>
+                        <input type="text" name="email" id="eAddress" class="size"><span class="hide">error</span>
+                    </p>    
+
+                    <p>
+                        <label for="password">Password:
+                            <span class="asterisk">*</span>
+                        </label>
+                        <input type="password" name="password" id="passcode" class="size"><span class="hide">error</span>
+                    </p>
+                </section>
+
+                <section class="space">
+                    <h2>Payment information</h2>
+                    <p>
+                        <label for="card">
+                            Card type:
+                        </label>
+                        <select id="card" name="usercard">
+                            <option value="visa">Visa</option>
+                            <option value="mc">Mastercard</option>
+                            <option value="amex">American Express</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="number">
+                            Card number:
+                            <span class="asterisk">*</span>
+                        </label>
+                        <input type="tel" id="number" name="cardnumber" class="size" /><span class="hide">error</span>
+                    </p>
+                    <p>
+                        <label for="expiration">
+                            Expiration date:
+                            <span class="asterisk">*</span>
+                        </label>
+                        <input type="text" id="expiration" name="expiry-date" class="size" placeholder="MM/YY" /><span class="hide">error</span>
+                    </p>
+                </section>
+
+                <section class="space">
+                    <input type="submit" value="Validate payment" class="btn"/>
+                </section>
+
+                <section class="end-section">
+                    <footer>
+                        <div class="footer">For more info, contact me on :<br>
+                            <div class="placement"><a href="https://twitter.com/abbykinase?s=21&t=BFdqYdlnE74GpDOC1f6kGg"><i class="fa-brands fa-x-twitter "></i></a></div>
+                            <div class="placement"><a href="https://www.linkedin.com/in/abigail-akpan-722685187"><i class="fa-brands fa-linkedin-in"></i></a></div>
+                        </div>
+                    </footer>
+                </section>
+
+            </form>
+            
+        </div>
+    </div>
+    
+    <script>
+        const form = document.getElementById("myForm");
+        const name = document.getElementById("user");
+        const email = document.getElementById("eAddress");
+        const password = document.getElementById("passcode");
+        const button = document.querySelector(".btn");
+        const boxes = document.querySelectorAll("input");
+        const required = [name, email];
+        
+        button.addEventListener("click", validator);
+
+        function validator(e) {
+            e.preventDefault();
+            let error = false;
+
+            boxes.forEach(function(box) {
+                let temp = box.getAttribute("name");
+                if(temp != "") {
+                    box.style.backgroundColor = "white";
+                    if(temp == "username" && box.value == "") {
+                        error = true;
+                        printError(box, temp, " required");
+                    }
+                    
+                    if(temp == "email") {
+                        let reg = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/g;
+                        let val = box.value;
+                        let result = reg.test(val);
+                        if(!result) {
+                            error = true;
+                            printError(box, temp, "is incorrect");
+                        }
+                        if(box.value == "") {
+                            error = true;
+                            printError(box, temp, "required");
+                        }
+                        
+                    }
+                    if(temp == "password") {
+                        let reg2 = /[a-zA-Z0-9]+/;
+                        let val2 = box.value;
+                        let result2 = reg2.test(val2);
+                        if(!result2) {
+                            error = true;
+                            printError(box, temp, "is incorrect, only numbers and letters allowed");
+                        }
+                        if(!(val2.length >= 3 && val2.length <= 8)){
+                            error = true;
+                            printError(box, temp, "must be between 3-8 characters long")
+                        }
+                    }
+                    if(temp == "cardnumber") {
+                        let reg3 = /\d+/;
+                        let val3 = box.value;
+                        let result3 = reg3.test(val3);
+                        if(!result3) {
+                            error = true;
+                            printError(box, temp, "only numbers are allowed");
+                        }
+                        if(!(box.value.length === 16)) {
+                            error = true;
+                            printError(box, temp, "must be 16 digits");
+                        }
+                    }
+
+                    if(temp == "expiry-date") {
+                        let reg4 = /^(0?[1-9]|1[0-2])[\/]([0-9]{2})$/;
+                        let result4 = reg4.test(box.value);
+                        if(!result4){
+                            error = true;
+                            printError(box, temp, "please put the correct date format");
+                        }
+                        if(box.value == "") {
+                            error = true;
+                            printError(box, temp, " required");
+                        }
+                    }
+                } 
+            });
+            if(!error) {
+                form.submit();
+                alert("Congrats! your form has been submitted!");
+            }
+        }
+
+        function printError(ele, attribute, msg) {
+            let ele2 = ele.nextElementSibling;
+            ele2.innerHTML = "<br>" + attribute.toUpperCase() + " "  + msg;
+            ele.style.border = "2px solid red";
+            ele2.classList.remove("hide");
+            ele.focus();
+        }
+        
+    </script>
+    
+    
+</body>
+</html>
